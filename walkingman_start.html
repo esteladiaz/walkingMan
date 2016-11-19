@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <link rel="stylesheet" href="walking_man_start.css">
+  </head>
+  <body>
+
+    <div id="canvas">
+        <div class="sky">
+            <div class="cloud-1"></div>
+            <div class="cloud-2"></div>
+            <div class="cloud-3"></div>
+            <div class="cloud-4"></div>
+            <div class="cloud-5"></div>
+            <div class="cloud-6"></div>
+            <div class="cloud-7"></div>
+            <div class="cloud-8"></div>
+        </div>
+
+        <div class="horizon"></div>
+
+        <!-- skeleton and shadow -->
+        <div class='shadow'></div>
+
+        <div class='me'>
+            <div class="head"></div>
+            <div class="torso">
+              <div class="chest"></div>
+              <div class="middle"></div>
+              <div class="hip"></div>
+                <div class="left leg">
+                    <div class="left thigh">
+                        <div class="joint"></div>
+                        <div class="left shin">
+                            <div class="left foot">
+
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- left leg -->
+
+                <div class="right leg">
+                    <div class="right thigh">
+                        <div class="joint"></div>
+                        <div class="right shin">
+                            <div class="right foot">
+
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- right leg -->
+
+                <div class="left arm">
+                  <!-- Add a left bicep, joint, forearm, and hand-->
+                    <div class="left bicep">
+                        <div class="joint"></div>
+                        <div class="left forearm">
+                          <div class="hand"></div>
+                        </div>
+                    </div>
+                </div> <!-- left arm -->
+
+                <div class="right arm">
+                    <div class="right bicep">
+                        <div class="joint"></div>
+                        <div class="right forearm">
+                          <div class="hand"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right arm">
+                    <!-- Add a right bicep, joint, forearm, and hand-->
+                </div> <!-- right arm -->
+
+            </div> <!-- torso -->
+        </div> <!-- me -->
+
+
+    </div> <!-- canvas -->
+
+    <p style="text-align: center"><a href="#canvas">show</a> / <a href="#">hide</a> element borders.</p>
+    <br/>
+    <br/>
+    <p style="text-align: center"><a class="button" href="#">walk</a></p>
+    <input id="nameInput"></input>
+    <button id="sayMyName">my name</button>
+    <div id="talkBubble"></div>
+    <input id="shoppingInput"></input>
+    <button id="grocerybutton">Grocery Item</button>
+    <div id="recipe"></div>
+  </body>
+</html>

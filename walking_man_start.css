@@ -1,0 +1,534 @@
+* {
+    font-family: courier;
+}
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    border-radius: 100%;
+    padding: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+#canvas {
+    height: 600px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#canvas div {
+    position: absolute;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
+
+#canvas:target div:not(.overlay) {
+    border: 1px solid black;
+}
+
+#canvas:target div.me div {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.me {
+    top: 50px;
+    left: 350px;
+    -webkit-animation-name: me;
+}
+
+.me,
+.me div {
+    background-repeat: no-repeat;
+/*    -webkit-animation-duration: 1750ms;
+*/}
+
+.head {
+    width: 98px;
+    height: 128px;
+    background-image: url(img/head.png);
+}
+
+.chest {
+    width: 118px;
+    height: 100px;
+    background-image: url(img/chest.png);
+}
+
+.torso {
+    top: 120px;
+}
+
+.middle {
+    width: 118px;
+    height: 96px;
+    background-image: url(img/torso.png);
+    top: 96px;
+    left: 5px;
+}
+
+.hip {
+    width: 106px;
+    height: 76px;
+    background-image: url(img/hips.png);
+    top: 133px;
+
+}
+
+
+.leg .joint{
+  top: 80px;
+  background-image: url(img/joint_side.png);
+  width: 60px;
+  height: 60px;
+  z-index: -1;
+}
+
+.arm.left {
+    width: 50px;
+    height: 50px;
+    z-index: -3;
+}
+
+.arm.right {
+    z-index: 3;
+    width: 50px;
+    height: 50px;
+}
+
+.bicep {
+    background-image: url(img/arm_top_side.png);
+    width: 65px;
+    height: 83px;
+}
+
+.arm.right .bicep {
+/*    -webkit-animation-name: right-bicep;*/
+}
+.arm.left .bicep {
+/*    -webkit-animation-name: left-bicep;*/
+
+}
+
+.armAnimation {
+    -webkit-animation-name: left-bicep;
+    -webkit-animation-name: right-bicep;
+}
+
+.arm .joint {
+    top: 72px;
+    width: 58px;
+    height: 66px;
+    z-index: -2;
+    background-image: url(img/joint_side.png);
+}
+
+.forearm {
+    background-image: url(img/arm_bottom_side.png);
+    width: 63px;
+    height: 68px;
+    top: 114px;
+}
+
+.hand {
+    top:63px;
+    left: -8px;
+    background-image: url(img/hand_closed.png);
+    width: 93px;
+    height: 87px;
+}
+
+.leg {
+    left: 6px;
+    -webkit-transform-origin: 30px 20px;
+/*    -webkit-animation-name: thigh;*/
+    background-image: url(img/leg_top_side.png);
+}
+
+.right.leg {
+    top: 140px;
+    left: -7px;
+    z-index: 30;
+    -webkit-animation-name: right-thigh;
+}
+
+.left.leg {
+    top: 150px;
+    -webkit-animation-name: left-thigh;
+}
+
+.animation div {
+    -webkit-animation-duration: 1750ms;
+}
+
+.thigh {
+    width: 70px;
+    height: 145px;
+}
+
+.left.thigh {
+    background-image: url(img/leg_top_side.png);
+}
+
+.right.thigh {
+    background-image: url(img/leg_top_side.png);
+}
+
+.shin {
+    top: 115px;
+    left: -11px;
+    width: 62px;
+    height: 92px;
+    background-image: url(img/leg_bottom_side.png);
+    -webkit-transform-origin: 30px 25px;
+}
+
+.right.shin {
+    -webkit-animation-name: right-shin;
+}
+
+.left.shin {
+    -webkit-animation-name: left-shin;
+}
+
+.foot {
+    top: 85px;
+    left: 2px;
+    width: 97px;
+    height: 44px;
+    background-image: url(img/foot_side.png);
+    -webkit-transform-origin: 0 50%;
+}
+
+.right.foot {
+    -webkit-animation-name: right-foot;
+}
+
+.left.foot {
+    -webkit-animation-name: left-foot;
+}
+
+.shadow {
+    width: 200px;
+    height: 70px;
+    left: 270px;
+    bottom: 15px;
+    background-image: url(img/shadow.png);
+    -webkit-animation-name: shadow;
+    -webkit-animation-duration: 1750ms;
+
+}
+
+
+/* setting proper z-indexes so that limbs show up correctly */
+
+div.right.arm {
+    z-index: 2;
+}
+
+div.left.arm {
+    z-index: -3;
+}
+
+div.arm > div.bicep > div.forearm {
+    z-index: -1;
+}
+
+div.right.leg {
+    z-index: 1;
+}
+
+div.left.leg {
+    z-index: -2;
+}
+
+div.leg > div.thigh > div.shin {
+    z-index: -1;
+}
+
+
+/* animations */
+
+@-webkit-keyframes me {
+    0% {
+        -webkit-transform: rotate(5deg) translate( 5px, 0px);
+    }
+    25% {
+        -webkit-transform: rotate(5deg) translate(-5px, -14px);
+    }
+    50% {
+        -webkit-transform: rotate(5deg) translate( 5px, 0px);
+    }
+    75% {
+        -webkit-transform: rotate(5deg) translate(-5px, -14px);
+    }
+    100% {
+        -webkit-transform: rotate(5deg) translate( 5px, 0px);
+    }
+}
+
+@-webkit-keyframes right-bicep {
+/* no duration bc already under "me" */
+    0% {
+        -webkit-transform: rotate(-45deg);
+    }
+    50% {
+        -webkit-transform: rotate(10deg);
+    }
+    100% {
+        -webkit-transform: rotate(-45deg);
+    }
+}
+
+@-webkit-keyframes left-bicep {
+    0% {
+        -webkit-transform: rotate(45deg);
+    }
+    50% {
+        -webkit-transform: rotate(-10deg);
+    }
+    100% {
+        -webkit-transform: rotate(45deg);
+    }
+}
+
+@-webkit-keyframes right-forearm {
+
+}
+
+@-webkit-keyframes left-forearm {
+
+}
+
+@-webkit-keyframes right-thigh {
+    0% {
+        -webkit-transform: rotate(-45deg);
+    }
+    50% {
+        -webkit-transform: rotate(10deg);
+    }
+    100% {
+        -webkit-transform: rotate(-45deg);
+    }
+}
+
+@-webkit-keyframes left-thigh {
+    0% {
+        -webkit-transform: rotate(10deg);
+    }
+    50% {
+        -webkit-transform: rotate(-45deg);
+    }
+    100% {
+        -webkit-transform: rotate(10deg);
+    }
+}
+
+@-webkit-keyframes right-shin {
+    0% {
+        -webkit-transform: rotate(30deg);
+    }
+    25% {
+        -webkit-transform: rotate(20deg);
+    }
+    50% {
+        -webkit-transform: rotate(20deg);
+    }
+    75% {
+        -webkit-transform: rotate(85deg);
+    }
+    100% {
+        -webkit-transform: rotate(30deg);
+    }
+}
+
+@-webkit-keyframes left-shin {
+    0% {
+        -webkit-transform: rotate(20deg);
+    }
+    25% {
+        -webkit-transform: rotate(85deg);
+    }
+    50% {
+        -webkit-transform: rotate(30deg);
+    }
+    75% {
+        -webkit-transform: rotate(20deg);
+    }
+    100% {
+        -webkit-transform: rotate(20deg);
+    }
+}
+
+@-webkit-keyframes right-foot {
+    0% {
+        -webkit-transform: rotate(-5deg);
+    }
+    25% {
+        -webkit-transform: rotate(-7deg);
+    }
+    50% {
+        -webkit-transform: rotate(-16deg);
+    }
+    75% {
+        -webkit-transform: rotate(-10deg);
+    }
+    100% {
+        -webkit-transform: rotate(-5deg);
+    }
+}
+
+@-webkit-keyframes left-foot {
+    0% {
+        -webkit-transform: rotate(-16deg);
+    }
+    25% {
+        -webkit-transform: rotate(-10deg);
+    }
+    50% {
+        -webkit-transform: rotate(-5deg);
+    }
+    75% {
+        -webkit-transform: rotate(-7deg);
+    }
+    100% {
+        -webkit-transform: rotate(-16deg);
+    }
+}
+
+
+@-webkit-keyframes shadow {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+
+.sky div {
+    background-repeat: no-repeat;
+    -webkit-animation-name: prop-1200;
+}
+
+.cloud-1,
+.cloud-2 {
+    width: 82px;
+    height: 90px;
+    background-image: url(img/clouds/1.png);
+    -webkit-animation-duration: 120s;
+}
+
+.cloud-3,
+.cloud-4 {
+    top: 70px;
+    width: 159px;
+    height: 90px;
+    background-image: url(img/clouds/2.png);
+    -webkit-animation-duration: 80s;
+}
+
+.cloud-5,
+.cloud-6 {
+    top: 30px;
+    width: 287px;
+    height: 62px;
+    background-image: url(img/clouds/3.png);
+    -webkit-animation-duration: 140s;
+}
+
+.cloud-7,
+.cloud-8 {
+    top: 100px;
+    width: 94px;
+    height: 81px;
+    background-image: url(img/clouds/4.png);
+    -webkit-animation-duration: 90s;
+}
+
+.cloud-1 {
+    left: 0px;
+}
+
+.cloud-2 {
+    left: 1200px;
+}
+
+.cloud-3 {
+    left: 250px;
+}
+
+.cloud-4 {
+    left: 1450px;
+}
+
+.cloud-5 {
+    left: 500px;
+}
+
+.cloud-6 {
+    left: 1700px;
+}
+
+.cloud-7 {
+    left: 950px;
+}
+
+.cloud-8 {
+    left: 2150px;
+}
+
+.horizon {
+    top: 350px;
+    width: 1800px;
+    height: 50px;
+    background: url(img/clouds/horizon.png) repeat-x;
+    -webkit-animation-name: prop-600;
+    -webkit-animation-duration: 40s;
+}
+
+.ground div {
+    background-repeat: no-repeat;
+    -webkit-animation-name: prop-2000;
+}
+
+
+
+@-webkit-keyframes prop-600 {
+    0% {
+        -webkit-transform: translateX(0px);
+    }
+    100% {
+        -webkit-transform: translateX(-600px);
+    }
+}
+
+@-webkit-keyframes prop-1200 {
+    0% {
+        -webkit-transform: translateX(0px);
+    }
+    100% {
+        -webkit-transform: translateX(-1200px);
+    }
+}
+
+@-webkit-keyframes prop-2000 {
+    0% {
+        -webkit-transform: translateX(0px);
+    }
+    100% {
+        -webkit-transform: translateX(-2000px);
+    }
+}
